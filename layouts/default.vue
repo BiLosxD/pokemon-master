@@ -43,15 +43,7 @@
     :root
         --black: #000
         --white: #FFF
-        --light_blue: #00C3FF
-        --light_blue_v2: #C5EDFF
-        --light_blue_v3: #74EBFF
-        --light_blue_v4: #00DBFF
-        --light_blue_v5: #ECFBFF
-        --blue: #00B1FF
-        --blue_v2: #0084F9
-        --dark_blue: #0068C4
-        --dark_blue_v2: #00305B
+        --blue: #3B4CCA
         --gray: #5C7285
         --red: #DC1C13
         --red_v2: #F07470
@@ -84,7 +76,7 @@
         &::-webkit-scrollbar-track
             box-shadow: none
         &::-webkit-scrollbar-thumb
-            background-color: var(--red)
+            background-color: var(--blue)
             border: 6px solid rgba(0, 0, 0, 0)
             background-clip: padding-box
             border-radius: 50px
@@ -99,11 +91,11 @@
     	background-color: var(--white)
     ::-webkit-scrollbar-thumb
     	border-radius: 10px
-    	background-color: var(--light_blue)
+    	background-color: var(--blue)
 
     ::selection
         color: var(--white)
-        background-color: var(--light_blue)
+        background-color: var(--blue)
 
     textarea
         resize: vertical
