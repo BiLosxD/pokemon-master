@@ -1,3 +1,5 @@
+import webpack from 'webpack'
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -11,13 +13,26 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-
+  /*
+  ** Customize the progress-bar color
+  */
+  loading: {
+    color: '#78CE5B',
+    throttle: 0,
+    height: '3px',
+    continuous: true
+  },
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+      { src: '~/plugins/vue-scrollto', ssr: false },
+      { src: '~/plugins/vue-moment' },
+      { src: '~/plugins/vue-click-outside' },
+      // { src: '~/plugins/vue-cookie' },
+      { src: '~/plugins/vee-validate' }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -38,5 +53,12 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+      loaders: {
+        cssModules: {
+          modules: {
+            localIdentName: "__[local]pkm[hash:base64:8]",
+          }
+        }
+      }
   }
 }
