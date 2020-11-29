@@ -16,12 +16,7 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: {
-    color: '#78CE5B',
-    throttle: 0,
-    height: '3px',
-    continuous: true
-  },
+  loading: false,
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
   ],
@@ -46,6 +41,9 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    ['nuxt-lazy-load', {
+      directiveOnly: true
+    }]
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
