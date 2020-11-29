@@ -2,14 +2,7 @@
     <!-- Landing -->
     <div :class="$style.landing">
         <!-- Poke Layout -->
-        <poke-layout :to_show="to_show" />
-        <!-- Bottom -->
-        <div :class="$style.bottom">
-            <div :class="[ $style.button, $style.pointer ]" @click="loadMore()">
-                <span>Load More</span>
-            </div>
-            <div class="here"></div>
-        </div>
+        <poke-layout ref="pokelayout" />
     </div>
 </template>
 
@@ -22,18 +15,10 @@
         },
         data () {
             return {
-                loaded: false,
-                to_show: 20
+                loaded: false
             }
         },
         methods: {
-            loadMore () {
-                const me = this
-                me.to_show += 20
-                me.$scrollTo('.here', {
-                    offset: 100
-                })
-            },
             initialization (event) {
                 const me = this
                 if (document.readyState != 'interactive') {
@@ -57,6 +42,11 @@
         },
         beforeDestroy () {
             window.removeEventListener('load', this.initialization)
+        },
+        head () {
+            return {
+                title: 'PokeSearch | Coding Chiefs'
+            }
         }
     }
 </script>
@@ -81,9 +71,9 @@
                     font-family: 'Brandon-Medium'
                     text-transform: uppercase
                     font-size: 16px
-                    color: var(--red)
+                    color: var(--blue)
                     background-color: var(--white)
-                    border: 1px solid var(--red_v2)
+                    border: 1px solid var(--blue_v2)
                     border-radius: 10px
                     box-shadow: 0 0 20px transparent
                     transition: .3s ease-in-out
@@ -98,13 +88,13 @@
                         right: 0
                         bottom: 0
                         z-index: 0
-                        background-image: linear-gradient(90deg, var(--red), var(--red_v2))
+                        background-image: linear-gradient(90deg, var(--blue), var(--blue_v2))
                         opacity: 0
                         border-radius: 10px
                         transition: .3s ease-in-out
                     &:hover
                         color: var(--white)
-                        box-shadow: 0 0 20px rgba(220, 28, 17, 0.5)
+                        box-shadow: 0 0 20px rgba(59, 76, 202, 0.5)
                         transition: .3s ease-in-out
                         &::before
                             opacity: 1

@@ -35,6 +35,14 @@
             ...mapMutations({
                 populateCatcher: 'global/catcher/populateCatcher'
             })
+        },
+        mounted () {
+            const me = this
+            pokemons.forEach((item, i) => {
+                item.shown = true
+            })
+            pokemons.sort((a, b) => parseInt(a.order) - parseInt(b.order))
+
         }
     }
 </script>
@@ -44,9 +52,9 @@
         --black: #000
         --white: #FFF
         --blue: #3B4CCA
+        --blue_v2: #7682DA
         --gray: #5C7285
         --red: #DC1C13
-        --red_v2: #F07470
         --extra_color: #A1B1C2
 
     html
