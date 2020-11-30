@@ -1,6 +1,9 @@
 <template lang="html">
     <div :class="$style.details">
         <div :class="$style.name" :style="`background-color: ${getTypeColor()};`">
+            <div>
+                <nuxt-link to="/" :class="$style.back">Go Back</nuxt-link>
+            </div>
             {{ pokemon.name }}
             <p>#{{ pokemon.order }}</p>
         </div>
@@ -154,6 +157,21 @@
 <style lang="stylus" module>
     :local
         .details
+            .back
+                font-family: 'Brandon-Medium'
+                font-size: 14px
+                text-transform: uppercase
+                display: inline-block
+                padding: 10px 15px
+                background-color: var(--white)
+                color: var(--black)
+                margin-bottom: 10px
+                border: 1px solid var(--white)
+                transition: .3s ease-in-out
+                &:hover
+                    background-color: transparent
+                    color: var(--white)
+                    transition: .3s ease-in-out
             .name
                 padding: 20px
                 font-family: 'Brandon-Bold'
