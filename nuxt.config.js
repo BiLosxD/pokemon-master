@@ -27,7 +27,8 @@ export default {
       { src: '~/plugins/vue-moment' },
       { src: '~/plugins/vue-click-outside' },
       // { src: '~/plugins/vue-cookie' },
-      { src: '~/plugins/vee-validate' }
+      { src: '~/plugins/vee-validate' },
+      { src: '~/plugins/mixins' }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

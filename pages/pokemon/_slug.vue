@@ -16,7 +16,9 @@
         data () {
             return {
                 loaded: false,
-                pokemon: null,
+                pokemon: {
+                    name: 'Pokemon'
+                },
                 pokemon_species: null
             }
         },
@@ -36,7 +38,7 @@
             const me = this
             me.initialization()
         },
-        async asyncData ({ $axios, store, params }) {
+        async asyncData ({ $axios, store, params, error }) {
             await store.commit('global/loader/checkLoader', await { status: true })
             return $axios.get(`https://pokeapi.co/api/v2/pokemon/${params.slug}`).then(response => {
                 return $axios.get(response.data.species.url).then(species => {
@@ -44,17 +46,13 @@
                         pokemon: response.data,
                         pokemon_species: species.data
                     }
-                }).catch(async error => {
-                    await store.commit('global/catcher/populateCatcher', await {
-                        status: true,
-                        message: 'Oops! Something Went Wrong.'
-                    })
+                }).catch(async response => {
+                    error({ statusCode: 404, message: 'Page not found' })
+                    await store.commit('global/loader/checkLoader', await { status: false })
                 })
-            }).catch(async error => {
-                await store.commit('global/catcher/populateCatcher', await {
-                    status: true,
-                    message: 'Oops! Something Went Wrong.'
-                })
+            }).catch(async response => {
+                error({ statusCode: 404, message: 'Page not found' })
+                await store.commit('global/loader/checkLoader', await { status: false })
             })
         },
         beforeMount () {
