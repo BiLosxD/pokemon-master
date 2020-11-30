@@ -65,8 +65,8 @@
 <script>
     import { mapGetters } from 'vuex'
     import pokemons from '~/static/pokemons/get-all.json'
-    import PokemonList from '~/components/layout/item/pokemonList'
-    import PokemonTable from '~/components/layout/item/pokemonTable'
+    import PokemonList from '~/components/layout/item/PokemonList'
+    import PokemonTable from '~/components/layout/item/PokemonTable'
 
     export default {
         components: {
@@ -138,12 +138,20 @@
         .pointer
             cursor: pointer
         .layout
+            padding-top: 40px
             .top
+                position: fixed
+                top: 0
+                left: 0
+                right: 0
+                z-index: 2
                 display: flex
                 flex-flow: row wrap
                 align-items: center
                 justify-content: space-between
-                margin: 0 5px 30px
+                background-color: var(--blue_v2)
+                padding: 20px
+                box-shadow: 0 0 20px rgba(59, 76, 202, 0.5)
                 .left
                     flex: 0 0 auto
                     display: flex
@@ -159,6 +167,9 @@
                         margin-right: 20px
                         label
                             margin-right: 10px
+                            color: var(--white)
+                            font-size: 14px
+                            font-family: 'Brandon-Medium'
                         &:last-child
                             margin-right: 0
                         &.image
@@ -180,10 +191,6 @@
                                 border-left: 5px solid transparent
                                 border-right: 5px solid transparent
                                 transform: translateY(-50%)
-                        input
-                            width: 300px
-                        select
-                            width: 150px
                         input,
                         select
                             border: 1px solid var(--blue)
@@ -194,9 +201,14 @@
                             box-shadow: 0 0 20px transparent
                             transition: .3s ease-in-out
                             &:focus
-                                box-shadow: 0 0 20px rgba(220, 28, 19, 0.3)
-                                border: 1px solid var(--red)
+                                box-shadow: 0 0 20px rgba(255, 255, 255, 0.5)
+                                border: 1px solid var(--white)
                                 transition: .3s ease-in-out
+                        input
+                            width: 300px
+                        select
+                            width: 150px
+                            padding: 7.5px 15px
                 .right
                     flex: 0 0 auto
                     display: flex
@@ -218,21 +230,21 @@
                                 fill: var(--white)
                                 fill-rule: evenodd
                             .stroke
-                                stroke: var(--black)
+                                stroke: var(--blue)
                                 transition: .3s ease-in-out
                         &:hover
-                            border: 1px solid var(--blue_v2)
+                            border: 1px solid var(--white)
                             transition: .3s ease-in-out
                             .icon
                                 .stroke
-                                    stroke: var(--blue_v2)
+                                    stroke: var(--white)
                                     transition: .3s ease-in-out
                         &.active
-                            border: 1px solid var(--red)
+                            border: 1px solid var(--white)
                             transition: .3s ease-in-out
                             .icon
                                 .stroke
-                                    stroke: var(--red)
+                                    stroke: var(--white)
                                     transition: .3s ease-in-out
             .list
                 display: flex

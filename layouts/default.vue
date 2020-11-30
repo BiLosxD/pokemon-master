@@ -10,6 +10,7 @@
                 {{ catcher.message }}
             </div>
         </div>
+        <back-to-top />
     </div>
 </template>
 
@@ -18,10 +19,12 @@
     import pokemons from '~/static/pokemons/get-all.json'
     import { mapGetters, mapMutations } from 'vuex'
     import Loader from '~/components/global/Loader'
+    import BackToTop from '~/components/global/BackToTop'
 
     export default {
         components: {
-            Loader
+            Loader,
+            BackToTop
         },
         computed: {
             ...mapGetters ({
