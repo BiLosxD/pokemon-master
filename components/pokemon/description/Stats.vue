@@ -33,7 +33,6 @@
     :local
         .group
             flex: 0 0 48.66%
-            margin-bottom: 40px
             h2
                 text-align: center
                 font-family: 'Brandon-Bold'
