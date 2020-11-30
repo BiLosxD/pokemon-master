@@ -2,11 +2,14 @@
     <div :class="$style.layout">
         <!-- Header -->
         <div :class="$style.top">
+            <!-- Left -->
             <div :class="$style.left">
+                <!-- Group Search -->
                 <div :class="[ $style.group, $style.image ]">
                     <label>Search:</label>
                     <input type="text" name="q" placeholder="Search a pokemon" v-model="form.search" @input="search('input')">
                 </div>
+                <!-- Group Per Page -->
                 <div :class="[ $style.group, $style.select ]">
                     <label>Per Page:</label>
                     <select name="per_page" @change="search('select')" v-model="form.per_page">
@@ -14,7 +17,9 @@
                     </select>
                 </div>
             </div>
+            <!-- Right -->
             <div :class="$style.right">
+                <!-- List Layout -->
                 <div :class="[ $style.wrapper, $style.pointer, (layout == 'list') ? $style.active : '' ]" @click="layout = 'list'">
                     <svg :class="$style.icon" width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g :class="$style.icon_stroke">
@@ -27,6 +32,7 @@
                         </g>
                     </svg>
                 </div>
+                <!-- Table Layout -->
                 <div :class="[ $style.wrapper, $style.pointer, (layout == 'table') ? $style.active : '' ]" @click="layout = 'table'">
                     <svg :class="$style.icon" width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g :class="$style.icon_stroke">
@@ -57,6 +63,7 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
     import pokemons from '~/static/pokemons/get-all.json'
     import PokemonList from '~/components/layout/item/pokemonList'
     import PokemonTable from '~/components/layout/item/pokemonTable'
@@ -69,7 +76,6 @@
         data () {
             return {
                 layout: 'list',
-                per_page: ['All', 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200],
                 selected_per_page: 100,
                 form: {
                     search: '',
@@ -78,6 +84,9 @@
             }
         },
         computed: {
+            ...mapGetters('pokemon', {
+                per_page: 'getPerPage'
+            }),
             populatePokemons () {
                 const me = this
                 let count = me.count_to_show
@@ -126,23 +135,15 @@
 
 <style lang="stylus" module>
     :local
-        /**
-         * Pointer */
         .pointer
             cursor: pointer
-        /**
-         * Layout */
         .layout
-            /**
-             * Top */
             .top
                 display: flex
                 flex-flow: row wrap
                 align-items: center
                 justify-content: space-between
                 margin: 0 5px 30px
-                /**
-                 * Left Search */
                 .left
                     flex: 0 0 auto
                     display: flex
@@ -196,16 +197,12 @@
                                 box-shadow: 0 0 20px rgba(220, 28, 19, 0.3)
                                 border: 1px solid var(--red)
                                 transition: .3s ease-in-out
-                /**
-                 * Left Toggle Layout */
                 .right
                     flex: 0 0 auto
                     display: flex
                     flex-flow: row wrap
                     align-items: center
                     justify-content: flex-end
-                    /**
-                     * Wrapper */
                     .wrapper
                         padding: 2px 10px 6px
                         border: 1px solid transparent
