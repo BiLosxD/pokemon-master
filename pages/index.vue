@@ -1,13 +1,15 @@
 <template lang="html">
-    <!-- Landing -->
-    <div :class="$style.landing">
-        <!-- Poke Layout -->
-        <poke-layout ref="pokelayout" />
-    </div>
+    <transition name="fade">
+        <!-- Landing -->
+        <div :class="$style.landing" v-if="loaded">
+            <!-- Poke Layout -->
+            <poke-layout ref="pokelayout" />
+        </div>
+    </transition>
 </template>
 
 <script>
-    import PokeLayout from '~/components/layout/PokeLayout'
+    import PokeLayout from '~/components/home/PokeLayout'
 
     export default {
         components: {

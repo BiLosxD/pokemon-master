@@ -65,8 +65,8 @@
 <script>
     import { mapGetters } from 'vuex'
     import pokemons from '~/static/pokemons/get-all.json'
-    import PokemonList from '~/components/layout/item/PokemonList'
-    import PokemonTable from '~/components/layout/item/PokemonTable'
+    import PokemonList from '~/components/home/layout/PokemonList'
+    import PokemonTable from '~/components/home/layout/PokemonTable'
 
     export default {
         components: {

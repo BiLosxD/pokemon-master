@@ -26,6 +26,14 @@
             Loader,
             BackToTop
         },
+        watch: {
+            $route (to, from) {
+                const me = this
+                if (to.path == '/pokemon') {
+                    me.$router.push('/')
+                }
+            }
+        },
         computed: {
             ...mapGetters ({
                 catcher: 'global/catcher/getCatcher',
@@ -87,7 +95,7 @@
         &::-webkit-scrollbar-track
             box-shadow: none
         &::-webkit-scrollbar-thumb
-            background-color: var(--blue)
+            background-color: var(--red)
             border: 6px solid rgba(0, 0, 0, 0)
             background-clip: padding-box
             border-radius: 50px
@@ -102,11 +110,11 @@
     	background-color: var(--white)
     ::-webkit-scrollbar-thumb
     	border-radius: 10px
-    	background-color: var(--blue)
+    	background-color: var(--red)
 
     ::selection
         color: var(--white)
-        background-color: var(--blue)
+        background-color: var(--red)
 
     textarea
         resize: vertical

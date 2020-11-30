@@ -1,4 +1,7 @@
 export default {
+    getPokemon (state) {
+        return state.pokemon
+    },
     getTypes (state) {
         return state.types
     },
