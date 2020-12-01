@@ -29,6 +29,7 @@
         <div :class="$style.description">
             <div :class="$style.text" v-html="getAttriburesOfPokemon('description')">
             </div>
+            <evolution :pokemon_species="pokemon_species" />
             <!-- Pokedex -->
             <pokedex :pokemon="pokemon" :pokemon_species="pokemon_species" />
             <!-- Traning -->
@@ -49,6 +50,7 @@
 <script>
     import { mapGetters } from 'vuex'
     import pokemons from '~/static/pokemons/get-all.json'
+    import Evolution from '~/components/pokemon/evolution/Evolution'
     import Pokedex from '~/components/pokemon/description/Pokedex'
     import Training from '~/components/pokemon/description/Training'
     import Stats from '~/components/pokemon/description/Stats'
@@ -66,6 +68,7 @@
             }
         },
         components: {
+            Evolution,
             Pokedex,
             Training,
             Stats,
