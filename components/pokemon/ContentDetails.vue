@@ -27,8 +27,8 @@
         </div>
         <!-- Description -->
         <div :class="$style.description">
-            <div :class="$style.text" v-html="getAttriburesOfPokemon('description')">
-            </div>
+            <div :class="$style.text" v-html="getAttriburesOfPokemon('description')"></div>
+            <!-- Evolution -->
             <evolution :pokemon_species="pokemon_species" />
             <!-- Pokedex -->
             <pokedex :pokemon="pokemon" :pokemon_species="pokemon_species" />
