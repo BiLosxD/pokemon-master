@@ -279,8 +279,8 @@
             .no_results
                 text-align: center
                 img
-                    width: 400px
-                    height: 400px
+                    width: 300px
+                    height: auto
                 p
                     font-family: 'Brandon-Bold'
                     font-size: 36px
