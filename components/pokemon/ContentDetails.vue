@@ -37,7 +37,9 @@
         <!-- Moves -->
         <div :class="$style.moves">
             <h2>Moves</h2>
-            <moves :move="move" v-for="(move, key) in pokemon.moves" :key="key" />
+            <div :class="$style.table">
+                <moves :move="move" v-for="(move, key) in pokemon.moves" :key="key" />
+            </div>
         </div>
     </div>
 </template>
@@ -262,15 +264,14 @@
                 width: 100%
                 max-width: 1280px
                 margin: 0 auto
-                display: flex
-                flex-flow: row wrap
-                align-items: center
-                justify-content: center
                 h2
-                    flex: 0 0 100%
                     text-align: center
                     font-family: 'Brandon-Bold'
                     font-size: 24px
                     color: var(--black)
                     padding: 10px
+                .table
+                    display: flex
+                    flex-flow: row wrap
+                    justify-content: flex-start
 </style>

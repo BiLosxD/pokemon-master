@@ -31,7 +31,7 @@
                     Habitat
                 </div>
                 <div :class="$style.value">
-                    {{ pokemon_species.habitat.name }}
+                    {{ replacer(pokemon_species.habitat.name) }}
                 </div>
             </li>
             <li :class="$style.item">
