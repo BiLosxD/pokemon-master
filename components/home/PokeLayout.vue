@@ -48,15 +48,23 @@
         <!-- Layout -->
         <div v-if="layout == 'list'">
             <!-- List -->
-            <div :class="$style.list">
+            <div :class="$style.list" v-if="!no_results">
                 <pokemon-list :pokemon="data" v-for="(data, key) in populatePokemons" :key="key" v-if="data.shown" />
+            </div>
+            <div :class="$style.no_results" v-else>
+                <img src="/no-results.svg" />
+                <p>No Pokémon Found.</p>
             </div>
         </div>
         <!-- Layout -->
         <div v-else>
             <!-- Table -->
-            <div :class="$style.table">
+            <div :class="$style.table" v-if="!no_results">
                 <pokemon-table :pokemon="data" v-for="(data, key) in populatePokemons" :key="key" v-if="data.shown" />
+            </div>
+            <div :class="$style.no_results" v-else>
+                <img src="/no-results.svg" />
+                <p>No Pokémon Found.</p>
             </div>
         </div>
     </div>
@@ -80,7 +88,8 @@
                 form: {
                     search: '',
                     per_page: 100
-                }
+                },
+                no_results: false
             }
         },
         computed: {
@@ -103,22 +112,26 @@
         methods: {
             search (type) {
                 const me = this
+                let ctr = 0
+
                 switch (type) {
                     case 'input':
-                        let ctr = 0
-                        pokemons.forEach((item, key) => {
-                            let name = item.name
-                            if (me.form.search != '') {
+                        if (me.form.search != '') {
+                            for (let i = 0, len = me.selected_per_page; i < len; i++) {
+                                let name = pokemons[i].name
                                 if (name.includes(me.form.search.toLowerCase())) {
                                     ctr++
-                                    item.shown = true
+                                    pokemons[i].shown = true
                                 } else {
-                                    item.shown = false
+                                    pokemons[i].shown = false
                                 }
-                            } else {
-                                item.shown = true
                             }
-                        })
+                        } else {
+                            for (let i = 0, len = me.selected_per_page; i < len; i++) {
+                                ctr++
+                                pokemons[i].shown = true
+                            }
+                        }
                         break
                     case 'select':
                         if (me.form.per_page == 'All') {
@@ -127,6 +140,12 @@
                             me.selected_per_page = me.form.per_page
                         }
                         break
+                }
+
+                if (ctr <= 0) {
+                    me.no_results = true
+                } else {
+                    me.no_results = false
                 }
             }
         }
@@ -257,4 +276,13 @@
                 align-items: center
                 justify-content: space-between
                 margin: 0 5px
+            .no_results
+                text-align: center
+                img
+                    width: 400px
+                    height: 400px
+                p
+                    font-family: 'Brandon-Bold'
+                    font-size: 36px
+                    color: var(--black)
 </style>
