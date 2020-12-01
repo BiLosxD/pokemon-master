@@ -108,7 +108,7 @@
                         border-left: 20px solid var(--blue_v2)
                         border-top: 20px solid transparent
                         border-bottom: 20px solid transparent
-                        transform: translateY(-50%) rotate(0deg)
+                        transform: translateY(-50%)
                         transition: .3s ease-in-out
                     &:hover
                         img,
@@ -154,4 +154,18 @@
                                 transform-origin: right
                                 background-color: var(--blue)
                                 transition: transform .3s ease-in-out
+        @media (max-width: 767px) and (min-width: 310px)
+            .evolution
+                .chain
+                    .item
+                        flex: 0 0 calc(33.33% - 20px)
+                        margin: 0 10px
+                        &::before
+                            border-left: 10px solid var(--blue_v2)
+                            border-top: 10px solid transparent
+                            border-bottom: 10px solid transparent
+                        img,
+                        svg
+                            width: 50px
+                            height: 50px
 </style>

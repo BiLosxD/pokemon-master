@@ -295,4 +295,9 @@
                     flex-flow: row wrap
                     align-items: flex-start
                     justify-content: flex-start
+        @media (max-width: 767px) and (min-width: 310px)
+            .details
+                .description,
+                .moves
+                    padding: 0 20px
 </style>

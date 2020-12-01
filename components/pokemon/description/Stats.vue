@@ -75,4 +75,7 @@
                         text-transform: capitalize
                         color: var(--blue)
                         font-size: 16px
+        @media (max-width: 767px) and (min-width: 310px)
+            .group
+                flex: 0 0 100%
 </style>

@@ -140,4 +140,12 @@
                                 padding: 2.5px 5px
                                 text-transform: uppercase
                                 border: 1px solid var(--black)
+        @media (max-width: 767px) and (min-width: 310px)
+            .item
+                flex: 0 0 100%
+                margin: 0 0 20px
+        @media (max-width: 1024px) and (min-width: 768px)
+            .item
+                flex: 0 0 calc((100% / 2) - 20px)
+                margin: 0 10px 20px
 </style>

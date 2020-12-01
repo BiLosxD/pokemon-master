@@ -130,4 +130,7 @@
                         font-family: 'Brandon-Light'
                         font-size: 14px
                         color: var(--black)
+        @media (max-width: 767px) and (min-width: 310px)
+            .move
+                flex: 0 0 100%
 </style>

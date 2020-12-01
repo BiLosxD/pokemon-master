@@ -1,5 +1,5 @@
 <template lang="html">
-    <div :class="$style.layout">
+    <div :class="$style.layout" :style="`padding-top: ${padding};`">
         <!-- Header -->
         <div :class="$style.top">
             <!-- Left -->
@@ -89,6 +89,7 @@
                     search: '',
                     per_page: 100
                 },
+                padding: 0,
                 no_results: false
             }
         },
@@ -110,6 +111,14 @@
             }
         },
         methods: {
+            autoPadding () {
+                const me = this
+                let target_height = document.querySelector(`.${me.$style.layout} .${me.$style.top}`), result = 0
+                if (target_height) {
+                    result = `${target_height.scrollHeight + 30}px`
+                }
+                me.padding = result
+            },
             search (type) {
                 const me = this
                 let ctr = 0
@@ -148,6 +157,16 @@
                     me.no_results = false
                 }
             }
+        },
+        mounted () {
+            const me = this
+            me.autoPadding()
+        },
+        beforeMount () {
+            window.addEventListener('resize', this.autoPadding)
+        },
+        beforeDestroy () {
+            window.removeEventListener('resize', this.autoPadding)
         }
     }
 </script>
@@ -157,7 +176,7 @@
         .pointer
             cursor: pointer
         .layout
-            padding-top: 40px
+            padding: 0 20px
             .top
                 position: fixed
                 top: 0
@@ -285,4 +304,30 @@
                     font-family: 'Brandon-Bold'
                     font-size: 36px
                     color: var(--black)
+        @media (max-width: 767px) and (min-width: 310px)
+            .layout
+                .top
+                    justify-content: center
+                    .left
+                        flex: 0 0 100%
+                        .group
+                            flex: 0 0 100%
+                            margin-right: 0
+                            margin-bottom: 20px
+                            label
+                                flex: 0 0 100%
+                                text-align: center
+                                margin-right: 0
+                                margin-bottom: 5px
+                            &.image
+                                &::before
+                                    top: 75%
+                            &.select
+                                &::before
+                                    top: 70%
+                            input,
+                            select
+                                width: 100%
+                    .right
+                        justify-content: center
 </style>

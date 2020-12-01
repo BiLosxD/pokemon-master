@@ -136,4 +136,7 @@
                                     padding: 2.5px 5px
                                     text-transform: uppercase
                                     border: 1px solid var(--black)
+        @media (max-width: 767px) and (min-width: 310px)
+            .group
+                flex: 0 0 100%
 </style>

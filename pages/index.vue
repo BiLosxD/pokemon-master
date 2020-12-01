@@ -61,7 +61,7 @@
             width: 100%
             max-width: 1280px
             margin: 0 auto
-            padding: 60px 0
+            padding: 0 0 60px
             .bottom
                 margin-top: 40px
                 text-align: center
