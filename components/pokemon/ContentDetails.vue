@@ -27,6 +27,8 @@
         </div>
         <!-- Description -->
         <div :class="$style.description">
+            <div :class="$style.text" v-html="getAttriburesOfPokemon('description')">
+            </div>
             <!-- Pokedex -->
             <pokedex :pokemon="pokemon" :pokemon_species="pokemon_species" />
             <!-- Traning -->
@@ -38,7 +40,7 @@
         <div :class="$style.moves">
             <h2>Moves</h2>
             <div :class="$style.table">
-                <moves :move="move" v-for="(move, key) in pokemon.moves" :key="key" />
+                <moves :move="move" v-for="(move, key) in pokemon.moves" :unique="key" :key="key" />
             </div>
         </div>
     </div>
@@ -143,6 +145,16 @@
                             }
                         })
                         return result
+                        break
+                    case 'description':
+                        me.pokemon_species.flavor_text_entries.forEach((item, key) => {
+                            if (result == '') {
+                                if (item.language.name == 'en') {
+                                    result = item.flavor_text
+                                }
+                            }
+                        })
+                        return result.trim()
                         break
                 }
             }
@@ -260,6 +272,10 @@
                 flex-flow: row wrap
                 align-items: flex-start
                 justify-content: space-between
+                .text
+                    flex: 0 0 100%
+                    text-align: center
+                    padding: 0 0 20px
             .moves
                 width: 100%
                 max-width: 1280px
@@ -270,8 +286,10 @@
                     font-size: 24px
                     color: var(--black)
                     padding: 10px
+                    margin-bottom: 20px
                 .table
                     display: flex
                     flex-flow: row wrap
+                    align-items: flex-start
                     justify-content: flex-start
 </style>
